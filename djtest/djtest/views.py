@@ -17,10 +17,15 @@ def test(request):
 
     
 def ajax(request):
-  print "----------- ajax processing -------------->"
-  my_response = {'ajax_resp':'Hello, webapp World!'}
-  datos = json.dumps(my_response)
-  return HttpResponse(datos, mimetype='application/json')    
+  if request.is_ajax():
+    print "----------- ajax processing -------------->"
+    print request.GET  #pass args using "url: '/ajax?name=test',"
+    my_response = {'ajax_resp':'Hello, webapp World!'}
+    datos = json.dumps(my_response)
+    return HttpResponse(datos, mimetype='application/json')
+  else:
+    print "----------- not ajax -------------->"
+    return HttpResponse('it is not ajax.')
   
 
 
