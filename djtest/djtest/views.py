@@ -13,7 +13,17 @@ def test(request):
   t = Template(fp.read())  
   fp.close()  
   html = t.render(Context({"id":1}))  
+  print ".test. "
   return HttpResponse(html) 
+
+def test2(request):
+  fp = open('djtest/test2.html')  
+  t = Template(fp.read())  
+  fp.close()  
+  html = t.render(Context({"id":1}))  
+  print ".test. "
+  return HttpResponse(html) 
+
 
     
 def ajax(request):
@@ -23,6 +33,7 @@ def ajax(request):
     my_response = {'ajax_resp':'Hello, webapp World!'}
     datos = json.dumps(my_response)
     return HttpResponse(datos, mimetype='application/json')
+    #return HttpResponseRedirect('/test2') 
   else:
     print "----------- not ajax -------------->"
     return HttpResponse('it is not ajax.')

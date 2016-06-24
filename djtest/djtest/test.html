@@ -12,11 +12,17 @@ $.ajax({
     }
 });
 }
-
-$(document).ready(function (){
-test_ajax();
+function test_ajax2(){
+$.ajax({
+    url: '/ajax?name=test',
+    dataType : 'json',
+    cache: false,
+    success: function(data) {
+        alert('Load was performed.'+data.ajax_resp);
+    }
 });
-
+self.location='/test2'; 
+}
 </script>
 
 </head>
@@ -24,4 +30,5 @@ test_ajax();
 <body>
 hello,world
 <button onclick="test_ajax()">test ajax</button>
+<button onclick="test_ajax2()">test redirect</button>
 </body>
